@@ -1,14 +1,15 @@
-// src/pages/AdminSignup.jsx
 import React from "react";
 import Button from "../reuseables/Button";
 import CustomInput from "../reuseables/CustomInput";
 import images from "../assets/images";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   return (
-    <div className="min-h-screen flex bg-white">
-      {/* Left Sidebar */}
-      <div className="w-sideBarWidth1 h-screen bg-customYellow flex items-center justify-center">
+    <div className="min-h-screen flex flex-col md:flex-row bg-white">
+      {/* Left Sidebar (hidden on small screens) */}
+      <div className="hidden md:flex w-sideBarWidth1 h-screen bg-customYellow items-center justify-center">
         <img
           src={images.rectangleListRegular}
           alt="list-icon"
@@ -17,48 +18,55 @@ const Signup = () => {
       </div>
 
       {/* Right Content */}
-      <div className="w-[684px] h-screen bg-white flex-col justify-center">
+      <div className="flex flex-col justify-center items-center w-full md:w-[684px] h-screen bg-white px-4 py-8">
         {/* Logo */}
-        <div className="h-1/3 flex justify-center items-center">
+        <div className="h-1/4 flex justify-center items-center">
           <img
             src="https://res.cloudinary.com/dwyiuc4ov/image/upload/v1710150205/assets/home/grpyw2ac3zst8os5omh6.svg"
             alt="semicolon-logo"
+            className="w-40"
           />
         </div>
 
         {/* Form */}
-        <div className="w-[600px] m-auto h-3/5 items-center flex flex-col justify-evenly">
+        <div className="w-full max-w-[600px] mx-auto flex flex-col gap-6">
           {/* First and Last Name */}
-          <div className="flex h-20 items-center w-11/12 justify-around">
-          <CustomInput placeholder="First Name *" />
-            <CustomInput placeholder="Last Name *"/>
+          <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-8">
+            <CustomInput placeholder="First Name *" className="w-full sm:w-[48%]" />
+            <CustomInput placeholder="Last Name *" className="w-full sm:w-[48%]" />
           </div>
 
           {/* Email and Username */}
-          <div className="flex h-20 items-center w-11/12 justify-around">
-            <CustomInput placeholder="Email Address *"/>
-            <CustomInput placeholder="Username *"/>
+          <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-8">
+            <CustomInput placeholder="Email Address *" className="w-full sm:w-[48%]" />
+            <CustomInput placeholder="Username *" className="w-full sm:w-[48%]" />
           </div>
 
           {/* Password and Confirm Password */}
-          <div className="flex h-20 items-center w-11/12 justify-around">
-          <CustomInput type="password" placeholder="Password *" />
-            <CustomInput type="password" placeholder="Confirm Password *"/>
+          <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-8">
+            <CustomInput type="password" placeholder="Password *" className="w-full sm:w-[48%]" />
+            <CustomInput type="password" placeholder="Confirm Password *" className="w-full sm:w-[48%]" />
           </div>
 
           {/* Already have account */}
-          <div className="h-20 flex m-auto justify-center w-64 items-start">
-            <p className="text-base text-[#AFA9A9] italic font-ibm text-center">
+          <div className="text-center">
+            <p className="text-base text-[#AFA9A9] italic font-ibm">
               Already have an account?{" "}
-              <span className="text-blue-600 normal cursor-pointer">Sign In</span>
+              <span
+                className="text-blue-600 cursor-pointer"
+                onClick={() => navigate("/signin")}
+              >
+                Sign In
+              </span>
             </p>
           </div>
 
           {/* Sign In Button */}
-          <div className="flex justify-center w-2/4 h-20 items-start m-auto">
+          <div className="w-full sm:w-1/2 mx-auto">
             <Button
               textContent="Sign In"
-              className="bg-red-600 text-white w-full h-12 rounded-md shadow-md hover:bg-red-700 transition"
+              onClick={() => navigate("/signin")}
+              className="bg-semicolonRed text-white w-full h-12 rounded-md shadow-md hover:bg-red-700 transition"
             />
           </div>
         </div>

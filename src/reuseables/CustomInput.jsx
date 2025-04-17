@@ -17,7 +17,7 @@ const CustomInput = ({ type = "text", placeholder = "", className = "" }) => {
   `;
 
   return (
-    <div className="relative w-onboardInputWidth h-onboardInputHeight border border-inputBorderRed rounded-lg bg-white shadow-sm flex items-center">
+    <div className={`relative h-onboardInputHeight border border-inputBorderRed rounded-md bg-white shadow-sm flex items-center ${className}`}>
       <input
         type={type}
         onFocus={handleFocus}

@@ -1,27 +1,30 @@
-import Sidebar from "../components/Sidebar";
-import WelcomeCard from "../components/WelcomeCard";
-import StatsCard from "../components/StatsCard";
+// src/pages/Dashboard.jsx
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+// import DashboardContent from '../components/DashboardContent';
+import AddNativeView from '../components/AddNativeView';
+import AnalyticsView from '../components/AnalyticsView';
+import LogView from '../components/LogView';
+import WelcomeCard from './WelcomeCard';
 
 const Dashboard = () => {
+  const [currentView, setCurrentView] = useState('welcome');
+
+  const handleSidebarClick = (view) => {
+    setCurrentView(view);
+  };
+
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="flex h-screen bg-gray-100">
+  <Sidebar onViewChange={handleSidebarClick} activeView={currentView} />
+  <div className="flex-grow w-full flex m-auto justify-center bg-white h-full overflow-auto">
+    {currentView === 'welcome' && <WelcomeCard />}
+    {currentView === 'addNative' && <AddNativeView />}
+    {currentView === 'analytics' && <AnalyticsView />}
+    {currentView === 'log' && <LogView />}
+  </div>
+</div>
 
-      <div className="ml-[240px] flex-1 p-8 bg-white min-h-screen">
-        <div className="flex justify-between">
-          <WelcomeCard />
-          <div className="space-y-4">
-            <StatsCard label="Total natives registered" value="250" />
-            <StatsCard label="Total cohorts registered" value="25" />
-            <StatsCard label="Checked-In today" value="150" />
-          </div>
-        </div>
-
-        <footer className="mt-16 text-sm text-center italic text-[#25324B]">
-          Copyright 2025. Made with Love in Lagos. <span className="text-red-600">❤️</span>
-        </footer>
-      </div>
-    </div>
   );
 };
 

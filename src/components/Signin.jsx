@@ -1,12 +1,16 @@
 import React from "react";
-import images from "../assets/images"; // Ensure your icon is in here
-import Button from "../reuseables/Button"; // Your reusable button component
+import images from "../assets/images";
+import Button from "../reuseables/Button";
+import CustomInput from "../reuseables/CustomInput";
+import { useNavigate } from "react-router-dom";
 
 const AdminSignIn2 = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen flex bg-white">
-      {/* Left Sidebar */}
-      <div className="w-sideBarWidth1 h-screen bg-customYellow flex items-center justify-center">
+    <div className="min-h-screen flex bg-white flex-col md:flex-row">
+      {/* Left Sidebar (hidden on small screens) */}
+      <div className="hidden md:flex w-sideBarWidth1 h-screen bg-customYellow items-center justify-center">
         <img
           src={images.rectangleListRegular}
           alt="list-icon"
@@ -15,7 +19,7 @@ const AdminSignIn2 = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex flex-col justify-center items-center w-[684px] h-screen bg-white">
+      <div className="flex flex-col justify-center items-center w-full md:w-[684px] h-screen bg-white">
         {/* Logo */}
         <div className="mb-10">
           <img
@@ -25,25 +29,20 @@ const AdminSignIn2 = () => {
         </div>
 
         {/* Form */}
-        <div className="flex flex-col w-[55%] space-y-5">
+        <div className="flex flex-col items-center w-full space-y-5">
           {/* Username */}
-          <input
-            type="text"
-            placeholder="Username *"
-            className="w-full h-12 border border-inputBorderRed rounded-md px-3 outline-none font-ibm placeholder:text-placeholderGray placeholder:font-light"
-          />
+          <CustomInput placeholder="Username *" className="w-[55%]" />
 
           {/* Password */}
-          <input
-            type="password"
-            placeholder="Password *"
-            className="w-full h-12 border border-inputBorderRed rounded-md px-3 outline-none font-ibm placeholder:text-placeholderGray placeholder:font-light"
-          />
+          <CustomInput type="password" placeholder="Password *" className="w-[55%]" />
 
           {/* Sign Up Prompt */}
           <p className="text-base font-ibm italic text-[#AFA9A9] text-center">
             Don’t have an account?{" "}
-            <span className="text-blue-600 font-ibm font-normal cursor-pointer">
+            <span
+              onClick={() => navigate("/signup")}
+              className="text-blue-600 font-ibm font-normal cursor-pointer"
+            >
               Sign Up
             </span>
           </p>
@@ -51,7 +50,8 @@ const AdminSignIn2 = () => {
           {/* Sign In Button */}
           <Button
             textContent="Sign In"
-            className="bg-red-600 text-white w-full h-12 rounded-md shadow-md hover:bg-red-700 transition"
+            onClick={() => navigate("/dashboard")}
+            className="bg-semicolonRed text-white w-[55%] h-12 rounded-md shadow-md hover:bg-red-700 transition"
           />
         </div>
       </div>

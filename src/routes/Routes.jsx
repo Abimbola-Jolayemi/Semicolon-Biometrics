@@ -1,6 +1,7 @@
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Dashboard from "../components/Dashboard";
+import StudentAttendanceView from "../components/StudentAttendanceView";
 
 const Routes = [
     {
@@ -14,6 +15,10 @@ const Routes = [
     {
         path: "/dashboard",
         element: <Dashboard/>
+    },
+    {
+        path: "/view-student",
+        element: <StudentAttendanceView/>
     }
 
 ]

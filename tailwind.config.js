@@ -19,6 +19,10 @@ export default {
         'customYellow': '#FFF2C7',
         'inputBorderRed': '#E8CACA',
         'placeholderGray': '#5F5E5E',
+        'deepGray': '#38516D',
+        'paleOffWhite': '#FFFAF9',
+        'semicolonRed': '#FF0000',
+        'lightGray': '#B6B0B0',
       },
       fontFamily: {
         ibm: ['"IBM Plex Sans"', 'sans-serif'],
