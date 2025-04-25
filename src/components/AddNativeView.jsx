@@ -11,6 +11,8 @@ const AddNativeView = () => {
     year: "numeric",
   });
 
+  const username = localStorage.getItem("userName") || "Guest";
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -81,7 +83,7 @@ const AddNativeView = () => {
       </div>
 
       <h1 className="text-3xl font-bold text-deepGray mb-2 leading-snug">
-        Welcome back, <span className="italic font-normal">Timothy</span> 👋
+        Welcome back, <span className="italic font-normal">{username}</span> 👋
       </h1>
 
       <h2 className="text-xl font-semibold text-gray-700 mb-8">
