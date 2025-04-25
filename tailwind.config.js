@@ -8,11 +8,11 @@ export default {
     extend: {
       width: {
         'sideBarWidth1': '684px',
-        'listIconWidth': '300px',
+        'listIconWidth': '250px',
         'onboardInputWidth': '250px',
       },
       height: {
-        'listIconHeight': '300px',
+        'listIconHeight': '250px',
         'onboardInputHeight': '50px',
       },
       colors:{

@@ -18,9 +18,9 @@ const AddNativeView = () => {
 
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
-  const [isRegistered, setIsRegistered] = useState(false);  // State to track registration success
+  const [isRegistered, setIsRegistered] = useState(false);
 
-  const handleSubmit = async (event) => {  // Added event as a parameter
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if(!firstName || !lastName || !email || !cohort){
@@ -28,14 +28,14 @@ const AddNativeView = () => {
       return;
     }
 
-    setError("");  // Clear previous error
+    setError("");
 
     if(!cohort.startsWith("Cohort")){
       setError("Enter a valid cohort name (e.g Cohort 21)");
       return;
     }
 
-    setError("");  // Clear previous error
+    setError("");
 
     const generateMockFingerprintId = () => {
       return `FP-${Math.floor(Math.random() * 1000000)}`;
@@ -65,12 +65,12 @@ const AddNativeView = () => {
       console.log("Server response: ", data);
 
       setMessage(`${firstName} has successfully been registered!`);
-      setIsRegistered(true);  // Set registration success state to true
+      setIsRegistered(true);
     } catch (error) {
       console.log(error);
       console.error("Register native error: ", error.message);
       setError("Something went wrong. Please try again later.");
-      setIsRegistered(false);  // Set registration success state to false in case of error
+      setIsRegistered(false);
     }
   };
 

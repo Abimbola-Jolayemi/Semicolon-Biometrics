@@ -3,6 +3,7 @@ import {
   HomeIcon, UserIcon, UsersIcon, ChartBarIcon,
   CogIcon, PowerIcon, Bars3Icon, XMarkIcon
 } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 
 const NavItem = ({ view, activeView, onClick, icon: Icon, label }) => (
   <div
@@ -17,16 +18,20 @@ const NavItem = ({ view, activeView, onClick, icon: Icon, label }) => (
 );
 
 const Sidebar = ({ onViewChange, activeView }) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const handleSettingsClick = () => console.log('Settings clicked');
-  const handleLogoutClick = () => console.log('Logout clicked');
+  const handleLogoutClick = () => {
+    console.log('Logout clicked')
+
+    navigate('/signin');
+  };
 
   return (
     <>
-      {/* Mobile hamburger icon */}
       <div className="lg:hidden fixed top-1 left-3 z-50">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           {isOpen ? (

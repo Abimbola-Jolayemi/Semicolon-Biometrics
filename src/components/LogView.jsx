@@ -76,7 +76,6 @@ const LogView = () => {
         </select>
       </div>
 
-      {/* Generate PDF Button */}
       <div className="flex justify-end mb-4">
         <Button
           textContent="Download file"

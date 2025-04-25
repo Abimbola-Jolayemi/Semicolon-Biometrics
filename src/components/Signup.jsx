@@ -8,17 +8,14 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 const Signup = () => {
   const navigate = useNavigate();
 
-  // States for form values
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // States for handling success and error messages
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -72,7 +69,7 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white">
-      {/* Left Sidebar (hidden on small screens) */}
+
       <div className="hidden md:flex w-sideBarWidth1 h-screen bg-customYellow items-center justify-center">
         <img
           src={images.rectangleListRegular}
@@ -81,9 +78,7 @@ const Signup = () => {
         />
       </div>
 
-      {/* Right Content */}
       <div className="flex flex-col justify-center items-center w-full md:w-[684px] h-screen bg-white px-4 py-8">
-        {/* Logo */}
         <div className="h-1/4 flex justify-center items-center">
           <img
             src="https://res.cloudinary.com/dwyiuc4ov/image/upload/v1710150205/assets/home/grpyw2ac3zst8os5omh6.svg"
@@ -92,25 +87,22 @@ const Signup = () => {
           />
         </div>
 
-        {/* Form */}
         <div className="w-full max-w-[600px] mx-auto flex flex-col gap-6">
-          {/* First and Last Name */}
           <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-8">
             <CustomInput
               placeholder="First Name *"
               className="w-full sm:w-[48%]"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(event) => setFirstName(event.target.value)}
             />
             <CustomInput
               placeholder="Last Name *"
               className="w-full sm:w-[48%]"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(event) => setLastName(event.target.value)}
             />
           </div>
 
-          {/* Email and Username */}
           <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-8">
             <CustomInput
               placeholder="Username *"
@@ -123,12 +115,10 @@ const Signup = () => {
               placeholder="Password *"
               className="w-full sm:w-[48%]"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
 
-          {/* Success/Error Message */}
-          {/* Success/Error Message */}
           {message && (
             <div className="text-green-600 text-center mt-4">
               <p>{message}</p>
@@ -140,7 +130,6 @@ const Signup = () => {
             </div>
           )}
 
-          {/* Already have account */}
           <div className="text-center">
             <p className="text-base text-[#AFA9A9] italic font-ibm">
               Already have an account?{" "}
@@ -153,7 +142,6 @@ const Signup = () => {
             </p>
           </div>
 
-          {/* Sign In Button */}
           <div className="w-full sm:w-1/2 mx-auto">
             <Button
               textContent="Sign Up"

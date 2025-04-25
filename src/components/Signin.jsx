@@ -7,20 +7,17 @@ import { useNavigate } from "react-router-dom";
 const AdminSignIn2 = () => {
   const navigate = useNavigate();
 
-  // States for form values
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // States for handling success and error messages
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!userName.trim() || !password.trim()) {
       setError("All fields are required!");
+      setMessage("");
       return;
     }
 
@@ -44,22 +41,28 @@ const AdminSignIn2 = () => {
       const data = await response.json();
       console.log("Server response:", data);
 
-      // if (!response.ok) {
-      //   setError(data.message || "Login failed");
-      //   return;
-      // }
+      if (!response.ok || data.status === "error") {
+        setError(data.message || "Login failed");
+        setMessage("");
+        return;
+      }
 
-      alert(`${userName} has successfully been logged in!`);
-      navigate("/dashboard");
+      setMessage(`${userName} has successfully been logged in!`);
+      setError("");
+
+      localStorage.setItem("userName", userName);
+      navigate("/dashboard", { state: { data: userName } });
+
     } catch (error) {
       console.error("Login error:", error.message);
-      setError(error.message);
+      setError("Something went wrong. Please try again.");
+      setMessage("");
     }
   };
 
   return (
     <div className="min-h-screen flex bg-white flex-col md:flex-row">
-      {/* Left Sidebar (hidden on small screens) */}
+      
       <div className="hidden md:flex w-sideBarWidth1 h-screen bg-customYellow items-center justify-center">
         <img
           src={images.rectangleListRegular}
@@ -68,9 +71,9 @@ const AdminSignIn2 = () => {
         />
       </div>
 
-      {/* Right Panel */}
+    
       <div className="flex flex-col justify-center items-center w-full md:w-[684px] h-screen bg-white">
-        {/* Logo */}
+        
         <div className="mb-10">
           <img
             src="https://res.cloudinary.com/dwyiuc4ov/image/upload/v1710150205/assets/home/grpyw2ac3zst8os5omh6.svg"
@@ -78,17 +81,14 @@ const AdminSignIn2 = () => {
           />
         </div>
 
-        {/* Form */}
         <div className="flex flex-col items-center w-full space-y-5">
-          {/* Username */}
           <CustomInput
             placeholder="Username *"
             className="w-[55%]"
             value={userName}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(event) => setUsername(event.target.value)}
           />
 
-          {/* Password */}
           <CustomInput
             type="password"
             placeholder="Password *"
@@ -97,7 +97,18 @@ const AdminSignIn2 = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          {/* Sign Up Prompt */}
+          {message && (
+            <div className="text-green-600 text-center mt-2">
+              <p>{message}</p>
+            </div>
+          )}
+          {error && (
+            <div className="text-red-600 text-center mt-2">
+              <p>{error}</p>
+            </div>
+          )}
+
+
           <p className="text-base font-ibm italic text-[#AFA9A9] text-center">
             Don’t have an account?{" "}
             <span
@@ -108,7 +119,6 @@ const AdminSignIn2 = () => {
             </span>
           </p>
 
-          {/* Sign In Button */}
           <Button
             textContent="Sign In"
             onClick={handleSubmit}

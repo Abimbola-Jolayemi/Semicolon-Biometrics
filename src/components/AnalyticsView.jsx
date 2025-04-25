@@ -1,4 +1,4 @@
-// src/components/AnalyticsView.jsx
+
 import React from 'react';
 import {
   ChartBarIcon,
@@ -47,7 +47,6 @@ const AnalyticsView = () => {
           </div>
         </div>
 
-        {/* Cohort Performance */}
         <div className="bg-white shadow rounded-md p-4">
           <h3 className="text-lg font-semibold text-deepGray mb-2 flex items-center gap-2">
             <ChartBarIcon className="w-5 h-5 text-deepGray" />
