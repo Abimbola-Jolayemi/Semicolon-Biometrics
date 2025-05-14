@@ -17,6 +17,7 @@ const AddNativeView = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [cohort, setCohort] = useState("");
+  const [fingerprintId, setFingerprintId] = useState("");
 
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -39,16 +40,16 @@ const AddNativeView = () => {
 
     setError("");
 
-    const generateMockFingerprintId = () => {
-      return `FP-${Math.floor(Math.random() * 1000000)}`;
-    };
+    // const generateMockFingerprintId = () => {
+    //   return `FP-${Math.floor(Math.random() * 1000000)}`;
+    // };
 
     const addNativeData = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       cohort: cohort,
-      fingerprintId: generateMockFingerprintId(),
+      fingerprintId: fingerprintId,
     }
 
     try {
@@ -121,6 +122,16 @@ const AddNativeView = () => {
           />
         </div>
 
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <CustomInput
+            placeholder="Id"
+            className="w-[49%]"
+            value={fingerprintId}
+            onChange={(event) => setFingerprintId(event.target.value)}
+          />
+          
+        </div>
+
         {/* Error and success message */}
         {error && <div className="text-red-600">{error}</div>}
         {message && <div className="text-green-600">{message}</div>}
@@ -143,7 +154,7 @@ const AddNativeView = () => {
               onClick={handleSubmit}
             />
           </div>
-          <div className={`w-24 h-24 text-lightGray ${isRegistered ? 'text-green-500' : ''}`}>  {/* Conditional class */}
+          <div className={`w-24 h-24 text-lightGray ${isRegistered ? 'text-green-500' : ''}`}>  {}
             <FingerPrintIcon />
           </div>
         </div>
